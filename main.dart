@@ -1,83 +1,61 @@
-// Importação da biblioteca
 import 'package:flutter/material.dart';
+import 'package:projeto_final/principal.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MaterialApp(home: login()));
 }
 
-// Classe Meu Aplicativo
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
+// Criando a tela de login
+class login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: HelloWorldPage(),
-    );
-  }
-}
+    return Scaffold(
+      // backgroundColor: Color(0x510E62),
 
-class HelloWorldPage extends StatelessWidget {
-  const HelloWorldPage({super.key});
+      // título do APP
+      appBar: AppBar(
+        title: Text('Tela de Login', style: TextStyle(color: Colors.white)),
+        backgroundColor: Color(0x510E62),
+      ),
 
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
+      // Conteúdo da página
+      body: Padding(
+        padding: EdgeInsets.all(16),
         child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(
-              'Gabriel',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-                color: Color(0xFF0E6251),
-              ),
+            // Título da tela do APP
+            Text('Acesso ao sistema', style: TextStyle(fontSize: 24)),
+
+            SizedBox(height: 24),
+
+            // Campo para o e-mail
+            TextField(decoration: InputDecoration(labelText: 'E-mail')),
+
+            SizedBox(height: 24),
+
+            // Campo para senha
+            TextField(
+              obscureText: true,
+              decoration: InputDecoration(labelText: 'Senha'),
             ),
 
-            Text(
-              'Sesi 400',
-              style: TextStyle(
-                fontSize: 18,
-                fontStyle: FontStyle.italic,
-                color: Color(0xFF510E62),
+            SizedBox(height: 24),
+
+            // Botão Entrar
+            ElevatedButton(
+              onPressed: () {
+                print('Botão pressionado');
+                // Função para navegar para tela Principal
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Principal()),
+                );
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Color(0x0E6251),
+                foregroundColor: Color(0x1ABC9C),
               ),
-            ),
-
-            SizedBox(height: 12),
-
-            Text(
-              'São Roque',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.normal,
-                color: Color(0xFF62510E),
-              ),
-            ),
-
-            SizedBox(height: 8),
-
-            Text(
-              'Agosto de 2026',
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.normal,
-                color: Color(0xFF1ABC9C),
-              ),
-            ),
-
-            SizedBox(height: 8),
-
-            Text(
-              'Eduardo',
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.normal,
-                color: Color(0xFF1ABC9C),
-              ),
+              child: Text('Entrar'),
             ),
           ],
         ),

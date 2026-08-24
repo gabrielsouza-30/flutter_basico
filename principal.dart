@@ -1,42 +1,67 @@
 import 'package:flutter/material.dart';
-import 'package:login/main.dart';
+import 'package:projeto_final/main.dart';
+import 'package:projeto_final/trabalho.dart';
 
 void main() {
-  runApp(MaterialApp(home: Principal()));
+  runApp(const MaterialApp(home: Principal()));
 }
 
 class Principal extends StatelessWidget {
+  const Principal({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Bem vindo a página principal !'),
-        backgroundColor: Color.fromARGB(255, 6, 33, 237),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text('página principal', style: TextStyle(fontSize: 32)),
-            SizedBox(height: 24),
+      appBar: AppBar(title: const Text('Principal')),
 
-            // Botão Voltar
-            ElevatedButton(
-              onPressed: () {
-                print('Botão pressionado');
+      // Menu lateral
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            const DrawerHeader(child: Text('MENU')),
+
+            // Opção Principal
+            ListTile(
+              leading: const Icon(Icons.home),
+              title: const Text('Principal'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Principal()),
+                );
+              },
+            ),
+
+            // Opção Trabalho
+            ListTile(
+              leading: const Icon(Icons.work),
+              title: const Text('Trabalho'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Trabalho()),
+                );
+              },
+            ),
+
+            // Opção Logout
+            ListTile(
+              leading: const Icon(Icons.logout),
+              title: const Text('Logout'),
+              onTap: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => login()),
                 );
               },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xFFFF2800),
-                foregroundColor: Colors.white,
-              ),
-              child: Text('Entrar'),
             ),
           ],
         ),
+      ),
+
+      // Conteúdo da tela
+      body: const Center(
+        child: Text('Tela Principal', style: TextStyle(fontSize: 24)),
       ),
     );
   }

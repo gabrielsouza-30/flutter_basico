@@ -1,32 +1,39 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_final/main.dart';
 
-void main() {
-  runApp(MaterialApp(home: login()));
-}
-
-class login extends StatelessWidget {
+class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //backgroundColor: Color(0xFF002060),
+      // Barra superior
+      appBar: AppBar(title: Text('Home')),
 
-      //titulo do app
-      appBar: AppBar(
-        title: Text('Tela home', style: TextStyle(color: Colors.white)),
-        backgroundColor: Color(0xFF002060),
-      ),
-
-      //Conteúdo da página
-      body: Padding(
-        padding: EdgeInsets.all(16),
+      // Conteúdo da página
+      body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+
           children: [
-            // Titulo da tela do app
-            Text('Sejam Bem-Vindos', style: TextStyle(fontSize: 24)),
+            // Mensagem
+            Text(
+              'Sejam bem vindos',
+              style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+            ),
 
-            SizedBox(height: 24),
+            SizedBox(height: 30),
 
-            //Botão Entrar
+            // Botão voltar
+            ElevatedButton(
+              onPressed: () {
+                // Volta para a tela anterior
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => login()),
+                );
+              },
+
+              child: Text('Voltar para Login'),
+            ),
           ],
         ),
       ),
